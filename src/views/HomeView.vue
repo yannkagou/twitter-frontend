@@ -4,6 +4,7 @@ import TheWelcome from '../components/TheWelcome.vue'
 
 <template>
   <main>
+    <span class="material-icons">pie_chart</span> 
     <TheWelcome />
   </main>
 </template>
