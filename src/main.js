@@ -1,3 +1,4 @@
+import '@fortawesome/fontawesome-free/css/all.css'
 import './assets/main.css'
 import 'material-icons/iconfont/material-icons.css'
 
