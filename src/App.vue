@@ -5,10 +5,9 @@
   <span class="material-icons">
       more_horiz
   </span>
-  
-  <span class="material-icons">
-      expand_more
-  </span> -->
+   -->
+
+
   <div class="fixed w-full">
       <div class="max-w-[1400px] flex mx-auto">
           <div class="w-[60px] h-[100px] max-w-[350px] lg:w-3/12 lg:px-4 lg:mx-auto">
@@ -69,6 +68,14 @@
                 <div>
                     <textarea :onInput="textareaInput" ref="textarea" v-model="tweet" placeholder="What's happening?" cols="30" rows="4" class="w-full bg-black mt-2 focus:ring-0 text-white text-[19px] min-h-[120px] outline-none"></textarea>
                 </div>
+                <div class="w-full">
+                    <video controls v-if="uploadType === 'mp4'" :src="showUpload" class="rounded-xl overflow-auto"></video>
+                    <img v-else :src="showUpload" class="rounded-xl min-w-full">
+                </div>
+                <div class="flex items-center text-[#1C9CEF] font-extrabold">
+                     <p><span class="material-icons">expand_more</span> Everyone can reply</p>
+                </div>
+                <div class="border-b border-b-gray-700"></div>
             </div>
         </div>
 
@@ -85,6 +92,23 @@ let createTweet = ref(false)
 let tweet = ref('')
 
 let textarea = ref(null)
+
+let file = ref('')
+let showUpload = ref('')
+let uploadType = ref('')
+
+const getFile = (e) => {
+    file.value = e.target.files[0]
+    showUpload.value = URL.createObjectURL(e.target.files[0])
+    uploadType.value = file.value.name.split('.').pop()
+}
+
+const closeMessageBox = () => {
+    createTweet.value = false
+    tweet.value = ''
+    showUpload.value = ''
+    uploadType.value = ''
+}
 
 const textareaInput = (e) => {
     textarea.value.style.height = "auto";
